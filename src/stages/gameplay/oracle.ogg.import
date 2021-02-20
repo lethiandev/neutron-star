@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/oracle.ogg-385b65626e02073358ee273241c90283.oggstr"
+
+[deps]
+
+source_file="res://stages/gameplay/oracle.ogg"
+dest_files=[ "res://.import/oracle.ogg-385b65626e02073358ee273241c90283.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

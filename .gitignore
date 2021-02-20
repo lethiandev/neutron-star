@@ -1,0 +1,6 @@
+# IDEs
+.vscode
+
+# Godot Engine
+.import/
+.export/

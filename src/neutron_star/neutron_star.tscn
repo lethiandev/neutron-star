@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://neutron_star/effects/wave_effect.gd" type="Script" id=1]
+[ext_resource path="res://neutron_star/neutron_star.gd" type="Script" id=2]
+[ext_resource path="res://neutron_star/effects/grow_effect.gd" type="Script" id=3]
+[ext_resource path="res://neutron_star/neutron_star.png" type="Texture" id=4]
+
+[node name="Planet" type="Node2D"]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="OuterPlanet" type="Node2D" parent="."]
+show_behind_parent = true
+script = ExtResource( 2 )
+
+[node name="WaveEffect" type="Node" parent="OuterPlanet"]
+script = ExtResource( 1 )
+wave_height = 28.0
+color_low = Color( 0, 0.0862745, 1, 0.705882 )
+color_high = Color( 0, 0.0862745, 1, 0 )
+
+[node name="InnerPlanet" type="Node2D" parent="."]
+show_behind_parent = true
+script = ExtResource( 2 )
+
+[node name="WaveEffect" type="Node" parent="InnerPlanet"]
+script = ExtResource( 1 )
+wave_height = 40.0
+color_low = Color( 0, 0.717647, 1, 0.470588 )
+color_high = Color( 0, 0.717647, 1, 0 )
+
+[node name="Outline" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0.0392157 )
+show_behind_parent = true
+script = ExtResource( 2 )
+height = 22.0
+
+[node name="GrowEffect" type="Node" parent="Outline"]
+script = ExtResource( 3 )
+
+[node name="WaveEffect" type="Node" parent="Outline"]
+script = ExtResource( 1 )
+color_high = Color( 1, 1, 1, 0.25098 )
