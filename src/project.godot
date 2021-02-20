@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Area2D",
 "class": "UnitBase",
 "language": "GDScript",
-"path": "res://units/unit_base/unit_base.gd"
+"path": "res://units/unit_base.gd"
 } ]
 _global_script_class_icons={
 "ShakeSampler": "",

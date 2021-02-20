@@ -18,8 +18,8 @@ func _process(p_delta: float) -> void:
 func _process_unit_group(p_group: String) -> void:
 	var nodes = get_tree().get_nodes_in_group(p_group)
 	if not nodes.empty():
-		var last_node = nodes.back()
-		_process_unit_hit(last_node)
+		var front_node = nodes.front()
+		_process_unit_hit(front_node)
 	else:
 		_process_miss()
 

@@ -34,5 +34,5 @@ func destroy() -> void:
 	queue_free()
 
 func _get_explosion_node() -> Node:
-	var scene = preload("res://units/effects/explosion.tscn")
+	var scene = preload("res://units/explosion/explosion.tscn")
 	return scene.instance()
