@@ -9,37 +9,57 @@ script = ExtResource( 3 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 12
+amount = 4
 lifetime = 0.6
 one_shot = true
 explosiveness = 0.8
 lifetime_randomness = 0.5
 texture = ExtResource( 2 )
-emission_shape = 2
-emission_rect_extents = Vector2( 4, 4 )
+emission_shape = 1
+emission_sphere_radius = 6.0
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 15.0
+initial_velocity = 16.0
 initial_velocity_random = 0.5
-color = Color( 1, 0.52549, 0.0666667, 1 )
+scale_amount = 1.5
+scale_amount_random = 0.25
 __meta__ = {
 "_editor_description_": ""
 }
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="."]
 emitting = false
-amount = 15
-lifetime = 0.8
+lifetime = 0.6
 one_shot = true
 explosiveness = 0.8
 lifetime_randomness = 0.5
 texture = ExtResource( 2 )
-emission_shape = 2
-emission_rect_extents = Vector2( 4, 4 )
+emission_shape = 1
+emission_sphere_radius = 6.0
 spread = 180.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 20.0
+initial_velocity = 16.0
 initial_velocity_random = 0.5
+scale_amount_random = 0.2
+color = Color( 1, 0.552941, 0.117647, 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="."]
+emitting = false
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.8
+lifetime_randomness = 0.5
+texture = ExtResource( 2 )
+emission_shape = 1
+emission_sphere_radius = 6.0
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 18.0
+initial_velocity_random = 0.5
+scale_amount_random = 0.5
 __meta__ = {
 "_editor_description_": ""
 }
