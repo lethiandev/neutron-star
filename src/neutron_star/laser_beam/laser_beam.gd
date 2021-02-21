@@ -4,11 +4,13 @@ tool
 const BeamBegin = preload("./beam_begin.png")
 const BeamEnd = preload("./beam_end.png")
 
-export(float) var duration: float = 0.4
+export(float) var duration: float = 0.3
 export(Vector2) var target: Vector2 = Vector2() \
 	setget set_target, get_target
 
 func _process(p_delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
 	if duration < 0.0:
 		queue_free()
 	duration -= p_delta
