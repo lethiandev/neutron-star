@@ -3,7 +3,7 @@
 [ext_resource path="res://background/background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/gameplay/gameplay.gd" type="Script" id=2]
 [ext_resource path="res://stages/gameplay/artemis.ogg" type="AudioStream" id=3]
-[ext_resource path="res://units/spaceship/spaceship.tscn" type="PackedScene" id=4]
+[ext_resource path="res://units/mothership/mothership.png" type="Texture" id=4]
 [ext_resource path="res://neutron_star/neutron_star.tscn" type="PackedScene" id=5]
 [ext_resource path="res://stages/effects/shake_effect.gd" type="Script" id=6]
 [ext_resource path="res://stages/gameplay/camera.gd" type="Script" id=7]
@@ -35,5 +35,7 @@ position = Vector2( 160, 120 )
 [node name="UnitsSpawner" type="Node" parent="World"]
 script = ExtResource( 8 )
 
-[node name="Spaceship" parent="World" instance=ExtResource( 4 )]
-position = Vector2( -120.103, 53.8781 )
+[node name="Sprite" type="Sprite" parent="World"]
+position = Vector2( 0.793701, -30.8724 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -30 )
