@@ -55,4 +55,6 @@ func _on_neutron_star_unit_hitted(p_unit: UnitBase) -> void:
 
 func _handle_star_hit(p_unit: UnitBase) -> void:
 	health -= 0.35;
+	if not $HitEffectPlayer.playing:
+		$HitEffectPlayer.play()
 	$Camera2D.shake_high()

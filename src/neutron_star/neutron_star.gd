@@ -11,4 +11,4 @@ func _on_area_entered(p_area: Area2D) -> void:
 
 func _handle_unit_collision(p_unit: UnitBase) -> void:
 	emit_signal("unit_hitted", p_unit)
-	p_unit.destroy()
+	p_unit.destroy(true)
