@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://background/background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/gameplay/gameplay.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://stages/gameplay/units_spawner.gd" type="Script" id=8]
 [ext_resource path="res://interface/cooldown_bar/cooldown_bar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://interface/health_bar/health_bar.tscn" type="PackedScene" id=10]
+[ext_resource path="res://stages/gameplay/miss.wav" type="AudioStream" id=11]
 
 [node name="GameplayStage" type="Node"]
 script = ExtResource( 2 )
@@ -41,6 +42,9 @@ margin_bottom = 152.0
 stream = ExtResource( 3 )
 autoplay = true
 bus = "Music"
+
+[node name="MissEffectPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 160, 120 )

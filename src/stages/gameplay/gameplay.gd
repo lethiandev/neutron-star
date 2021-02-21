@@ -48,3 +48,4 @@ func _handle_unit_hit(p_unit: Node) -> void:
 
 func _handle_unit_miss() -> void:
 	cooldown = 1.0
+	$MissEffectPlayer.play()
