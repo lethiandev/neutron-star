@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://neutron_star/effects/wave_effect.gd" type="Script" id=1]
-[ext_resource path="res://neutron_star/neutron_star.gd" type="Script" id=2]
 [ext_resource path="res://neutron_star/effects/grow_effect.gd" type="Script" id=3]
 [ext_resource path="res://neutron_star/neutron_star.png" type="Texture" id=4]
+[ext_resource path="res://neutron_star/planet_mesh/planet_mesh.tscn" type="PackedScene" id=5]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 20.0
@@ -16,35 +16,33 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 4 )
 
-[node name="OuterPlanet" type="Node2D" parent="."]
+[node name="OuterMesh" parent="." instance=ExtResource( 5 )]
 show_behind_parent = true
-script = ExtResource( 2 )
 
-[node name="WaveEffect" type="Node" parent="OuterPlanet"]
+[node name="WaveEffect" type="Node" parent="OuterMesh"]
 script = ExtResource( 1 )
-wave_height = 28.0
-color_low = Color( 0, 0.0862745, 1, 0.705882 )
-color_high = Color( 0, 0.0862745, 1, 0 )
-
-[node name="InnerPlanet" type="Node2D" parent="."]
-show_behind_parent = true
-script = ExtResource( 2 )
-
-[node name="WaveEffect" type="Node" parent="InnerPlanet"]
-script = ExtResource( 1 )
-wave_height = 40.0
+wave_height = 44.0
 color_low = Color( 0, 0.717647, 1, 0.470588 )
 color_high = Color( 0, 0.717647, 1, 0 )
 
-[node name="Outline" type="Node2D" parent="."]
+[node name="InnerMesh" parent="." instance=ExtResource( 5 )]
+show_behind_parent = true
+
+[node name="WaveEffect" type="Node" parent="InnerMesh"]
+script = ExtResource( 1 )
+wave_height = 44.0
+color_low = Color( 0, 0.0862745, 1, 0.705882 )
+color_high = Color( 0, 0.0862745, 1, 0 )
+
+[node name="OutlineMesh" parent="." instance=ExtResource( 5 )]
 modulate = Color( 1, 1, 1, 0.0392157 )
 show_behind_parent = true
-script = ExtResource( 2 )
 height = 22.0
 
-[node name="GrowEffect" type="Node" parent="Outline"]
+[node name="GrowEffect" type="Node" parent="OutlineMesh"]
 script = ExtResource( 3 )
 
-[node name="WaveEffect" type="Node" parent="Outline"]
+[node name="WaveEffect" type="Node" parent="OutlineMesh"]
 script = ExtResource( 1 )
+wave_height = 20.0
 color_high = Color( 1, 1, 1, 0.25098 )
