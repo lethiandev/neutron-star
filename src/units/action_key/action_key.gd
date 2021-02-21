@@ -7,12 +7,21 @@ const GROUP_KEY_IMAGES = {
 	UnitBase.UNIT_GROUP_P: preload("./key_p.png"),
 }
 
-func _ready() -> void:
+export(float) var arm_length: float = 36.0
+
+func _process(p_delta: float) -> void:
 	var parent_node = get_parent()
-	if parent_node is UnitBase:
+	if "unit_group" in parent_node:
 		var group = parent_node.unit_group
 		_set_key_image(group)
+	
+	var angle = (get_parent().transform.origin * -1.0).angle()
+	var offset = Vector2(arm_length, 0.0).rotated(angle)
+	$Sprite.position = offset
 
 func _set_key_image(group_name: String) -> void:
-	var image = GROUP_KEY_IMAGES[group_name]
-	$Sprite.texture = image
+	if GROUP_KEY_IMAGES.has(group_name):
+		var image = GROUP_KEY_IMAGES[group_name]
+		$Sprite.texture = image
+	else:
+		$Sprite.texture = null
