@@ -84,3 +84,4 @@ func _game_failure() -> void:
 	get_tree().set_pause(true)
 	$Interface/Courtain/AnimationPlayer.play("fade_out")
 	yield($Interface/Courtain/AnimationPlayer, "animation_finished")
+	get_tree().change_scene("res://stages/game_over/game_over.tscn")
