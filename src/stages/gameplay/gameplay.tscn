@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://background/background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/gameplay/gameplay.gd" type="Script" id=2]
@@ -11,6 +11,37 @@
 [ext_resource path="res://interface/health_bar/health_bar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://stages/gameplay/miss.wav" type="AudioStream" id=11]
 [ext_resource path="res://stages/gameplay/hit.wav" type="AudioStream" id=12]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_out"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1.5, 2.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="GameplayStage" type="Node"]
 script = ExtResource( 2 )
@@ -38,6 +69,20 @@ margin_top = 88.0
 margin_right = 192.0
 margin_bottom = 152.0
 
+[node name="Courtain" type="ColorRect" parent="Interface"]
+pause_mode = 2
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Interface/Courtain"]
+autoplay = "fade_in"
+anims/fade_in = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
+
 [node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 autoplay = true
@@ -47,10 +92,12 @@ bus = "Music"
 stream = ExtResource( 11 )
 
 [node name="HitEffectPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
 stream = ExtResource( 12 )
 volume_db = -10.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
+pause_mode = 2
 position = Vector2( 160, 120 )
 current = true
 script = ExtResource( 7 )

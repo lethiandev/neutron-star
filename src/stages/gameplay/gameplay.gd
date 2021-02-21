@@ -66,10 +66,21 @@ func _on_neutron_star_unit_hitted(p_unit: UnitBase) -> void:
 	_handle_star_hit(p_unit)
 
 func _handle_star_hit(p_unit: UnitBase) -> void:
-	health -= 0.30
-	
-	last_group = p_unit.unit_group
-	hitted = 0.2
-	
+	_set_damage_cooldown(p_unit, 0.2)
+	_take_damage(p_unit)
 	$HitEffectPlayer.play()
 	$Camera2D.shake_high()
+
+func _take_damage(p_from: UnitBase) -> void:
+	health -= 0.30
+	if health < -0.1:
+		_game_failure()
+
+func _set_damage_cooldown(p_from: UnitBase, p_time: float) -> void:
+	last_group = p_from.unit_group
+	hitted = p_time
+
+func _game_failure() -> void:
+	get_tree().set_pause(true)
+	$Interface/Courtain/AnimationPlayer.play("fade_out")
+	yield($Interface/Courtain/AnimationPlayer, "animation_finished")
