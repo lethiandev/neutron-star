@@ -8,15 +8,22 @@ export(float) var duration: float = 0.3
 export(Vector2) var target: Vector2 = Vector2() \
 	setget set_target, get_target
 
+var time_left: float = 0.0
+
+func _ready() -> void:
+	time_left = duration
+
 func _process(p_delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
-	if duration < 0.0:
+	if time_left < 0.0:
 		queue_free()
-	duration -= p_delta
+	time_left -= p_delta
+	update()
 
 func _draw() -> void:
-	draw_line(Vector2(), target, Color(1.0, 1.0, 1.0), 10)
+	var width = sin(time_left / duration) * 4.0
+	draw_line(Vector2(), target, Color(1.0, 1.0, 1.0), 6 + width)
 	draw_texture(BeamBegin, BeamBegin.get_size() * -0.5)
 	draw_texture(BeamEnd, target - BeamEnd.get_size() * 0.5)
 
