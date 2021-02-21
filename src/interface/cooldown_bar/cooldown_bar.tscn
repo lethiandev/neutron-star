@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://interface/radial_bar/radial_bar.tscn" type="PackedScene" id=1]
+[ext_resource path="res://interface/cooldown_bar/cooldown_bar.png" type="Texture" id=2]
+
+[node name="CooldownBar" instance=ExtResource( 1 )]
+margin_right = 64.0
+margin_bottom = 64.0
+texture = ExtResource( 2 )
+stretch_mode = 4
