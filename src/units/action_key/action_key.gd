@@ -15,7 +15,9 @@ func _process(p_delta: float) -> void:
 		var group = parent_node.unit_group
 		_set_key_image(group)
 	
-	var angle = (get_parent().transform.origin * -1.0).angle()
+	var world_center = Vector2(320.0, 240.0) * 0.5
+	var unit_center = get_parent().global_position - world_center
+	var angle = (unit_center * -1.0).angle()
 	var offset = Vector2(arm_length, 0.0).rotated(angle)
 	$Sprite.position = offset
 
