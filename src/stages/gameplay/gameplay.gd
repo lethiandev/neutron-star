@@ -53,8 +53,10 @@ func _process_unit_group(p_group: String) -> void:
 
 func _handle_unit_hit(p_unit: Node) -> void:
 	if p_unit is UnitBase:
-		p_unit.hit()
+		var pos = p_unit.global_position
+		$World/NeutronStar.shoot(pos)
 		$Camera2D.shake_low()
+		p_unit.hit()
 
 func _handle_unit_miss() -> void:
 	cooldown = 1.0
