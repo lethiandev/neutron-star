@@ -16,6 +16,9 @@ var hitted: float = 0.0
 func _init() -> void:
 	randomize()
 
+func _ready() -> void:
+	_populate_interface_state()
+
 func _process(p_delta: float) -> void:
 	if cooldown < 0.1:
 		_process_game_input()
