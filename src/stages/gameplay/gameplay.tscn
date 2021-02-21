@@ -37,7 +37,7 @@ margin_top = 88.0
 margin_right = 192.0
 margin_bottom = 152.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 autoplay = true
 bus = "Music"
