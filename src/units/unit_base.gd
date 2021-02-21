@@ -15,7 +15,7 @@ const UNIT_GROUP_ARRAY = [
 
 var unit_group: String
 
-func _init() -> void:
+func _ready() -> void:
 	_assign_random_group()
 
 func _assign_random_group() -> void:
