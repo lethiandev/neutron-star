@@ -27,7 +27,7 @@ func _process_game_state(p_delta: float) -> void:
 	_populate_interface_state()
 	
 	cooldown = max(0.0, cooldown - p_delta)
-	health = min(1.0, health + p_delta * 0.5)
+	health = min(1.0, health + p_delta * 0.25)
 
 func _populate_interface_state() -> void:
 	$Interface/CenterContainer/CooldownBar.progress = cooldown
@@ -49,3 +49,10 @@ func _handle_unit_hit(p_unit: Node) -> void:
 func _handle_unit_miss() -> void:
 	cooldown = 1.0
 	$MissEffectPlayer.play()
+
+func _on_neutron_star_unit_hitted(p_unit: UnitBase) -> void:
+	_handle_star_hit(p_unit)
+
+func _handle_star_hit(p_unit: UnitBase) -> void:
+	health -= 0.35;
+	$Camera2D.shake_high()

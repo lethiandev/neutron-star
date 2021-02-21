@@ -70,3 +70,5 @@ script = ExtResource( 8 )
 position = Vector2( 0.793701, -30.8724 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -30 )
+
+[connection signal="unit_hitted" from="World/NeutronStar" to="." method="_on_neutron_star_unit_hitted"]
