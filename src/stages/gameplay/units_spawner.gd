@@ -1,5 +1,7 @@
 extends Node
 
+const Mothership = preload("res://units/mothership/mothership.gd")
+
 const SpaceshipScene = preload("res://units/spaceship/spaceship.tscn")
 const MothershipBossScene = preload("res://units/mothership_boss/mothership_boss.tscn")
 
@@ -10,6 +12,7 @@ func _ready() -> void:
 	yield(_spawn_wave_3(), "completed")
 	yield(_spawn_wave_4(), "completed")
 	yield(_spawn_mothership_boss(), "completed")
+	yield(_stage_completed(), "completed")
 
 func _spawn_wave_1() -> void:
 	var side = 1.0 if randf() > 0.5 else -1.0
@@ -64,6 +67,17 @@ func _spawn_mothership_boss() -> void:
 	boss_node.position = Vector2(0.0, -86.0)
 	get_parent().add_child(boss_node)
 	yield(boss_node, "completed")
+
+func _stage_completed() -> void:
+	_remove_all_units()
+	yield(_delay(2.0), "completed")
+	
+func _remove_all_units() -> void:
+	var units = get_tree().get_nodes_in_group("unit")
+	for unit in units:
+		# Avoid calling destroy method on boss twice
+		if not unit is Mothership:
+			unit.destroy()
 
 func _spawn_spaceship(p_delay: float, p_duration: float, p_from: Vector2) -> void:
 	var spaceship_node = _spawn_unit(SpaceshipScene, p_from)
