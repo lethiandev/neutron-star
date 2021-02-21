@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://neutron_star/effects/wave_effect.gd" type="Script" id=1]
+[ext_resource path="res://neutron_star/neutron_star.gd" type="Script" id=2]
 [ext_resource path="res://neutron_star/effects/grow_effect.gd" type="Script" id=3]
 [ext_resource path="res://neutron_star/neutron_star.png" type="Texture" id=4]
 [ext_resource path="res://neutron_star/planet_mesh/planet_mesh.tscn" type="PackedScene" id=5]
@@ -9,6 +10,8 @@
 radius = 20.0
 
 [node name="NeutronStar" type="Area2D"]
+monitorable = false
+script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
