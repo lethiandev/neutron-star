@@ -8,6 +8,11 @@ export(float) var duration: float = 0.4
 export(Vector2) var target: Vector2 = Vector2() \
 	setget set_target, get_target
 
+func _process(p_delta: float) -> void:
+	if duration < 0.0:
+		queue_free()
+	duration -= p_delta
+
 func _draw() -> void:
 	draw_line(Vector2(), target, Color(1.0, 1.0, 1.0), 10)
 	draw_texture(BeamBegin, BeamBegin.get_size() * -0.5)
