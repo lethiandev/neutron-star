@@ -10,6 +10,9 @@ var visual_health: float = 0.0
 
 var completed: bool = false
 
+func _ready() -> void:
+	_process_interface_state(0.0)
+
 func _process(p_delta: float) -> void:
 	_process_interface_state(p_delta)
 	_process_boss_state()
