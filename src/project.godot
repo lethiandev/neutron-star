@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Neutron Star"
-run/main_scene="res://stages/gameplay/gameplay.tscn"
+run/main_scene="res://stages/menu/menu.tscn"
 config/icon="res://icon.png"
 
 [audio]
