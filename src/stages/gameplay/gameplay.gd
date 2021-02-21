@@ -10,6 +10,9 @@ var action_group_map = {
 var cooldown: float = 0.0
 var health: float = 1.0
 
+var last_group: String = ""
+var hitted: float = 0.0
+
 func _init() -> void:
 	randomize()
 
@@ -26,8 +29,9 @@ func _process_game_input() -> void:
 func _process_game_state(p_delta: float) -> void:
 	_populate_interface_state()
 	
-	cooldown = max(0.0, cooldown - p_delta)
-	health = min(1.0, health + p_delta * 0.25)
+	cooldown = max(0.0, cooldown - p_delta * 2.0)
+	health = min(1.0, health + p_delta * 0.05)
+	hitted = max(0.0, hitted - p_delta)
 
 func _populate_interface_state() -> void:
 	$Interface/CenterContainer/CooldownBar.progress = cooldown
@@ -38,6 +42,9 @@ func _process_unit_group(p_group: String) -> void:
 	if not nodes.empty():
 		var front_node = nodes.front()
 		_handle_unit_hit(front_node)
+	elif hitted > 0.0 and last_group == p_group:
+		# Forgive "missing" for short time
+		pass
 	else:
 		_handle_unit_miss()
 
@@ -54,7 +61,10 @@ func _on_neutron_star_unit_hitted(p_unit: UnitBase) -> void:
 	_handle_star_hit(p_unit)
 
 func _handle_star_hit(p_unit: UnitBase) -> void:
-	health -= 0.35;
-	if not $HitEffectPlayer.playing:
-		$HitEffectPlayer.play()
+	health -= 0.30
+	
+	last_group = p_unit.unit_group
+	hitted = 0.2
+	
+	$HitEffectPlayer.play()
 	$Camera2D.shake_high()

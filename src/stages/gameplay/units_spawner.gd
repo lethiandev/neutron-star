@@ -4,7 +4,7 @@ const SpaceshipScene = preload("res://units/spaceship/spaceship.tscn")
 
 func _ready() -> void:
 	yield(get_tree().create_timer(5.0), "timeout")
-	_spawn_enemies()
+	#_spawn_enemies()
 
 func _spawn_enemies() -> void:
 	_spawn_unit(SpaceshipScene, Vector2(200.0, 0.0))
