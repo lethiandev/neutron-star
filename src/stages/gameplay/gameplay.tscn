@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://background/background.tscn" type="PackedScene" id=1]
 [ext_resource path="res://stages/gameplay/gameplay.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://interface/cooldown_bar/cooldown_bar.tscn" type="PackedScene" id=9]
 [ext_resource path="res://interface/health_bar/health_bar.tscn" type="PackedScene" id=10]
 [ext_resource path="res://stages/gameplay/miss.wav" type="AudioStream" id=11]
+[ext_resource path="res://stages/gameplay/hit.wav" type="AudioStream" id=12]
 
 [node name="GameplayStage" type="Node"]
 script = ExtResource( 2 )
@@ -45,6 +46,9 @@ bus = "Music"
 
 [node name="MissEffectPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
+
+[node name="HitEffectPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 160, 120 )
