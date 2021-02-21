@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/artemis.ogg-c123e54990064d6bd90c6b3eb2daf9ab.oggstr"
+
+[deps]
+
+source_file="res://stages/gameplay/music/artemis.ogg"
+dest_files=[ "res://.import/artemis.ogg-c123e54990064d6bd90c6b3eb2daf9ab.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
