@@ -16,7 +16,7 @@ var acceleration: float = 15.0
 var histogram: PoolRealArray = PoolRealArray()
 
 func _ready() -> void:
-	var bus_index = AudioServer.get_bus_index("Midbus")
+	var bus_index = AudioServer.get_bus_index("Music")
 	spectrum = AudioServer.get_bus_effect_instance(bus_index, 0)
 	
 	histogram.resize(definition)

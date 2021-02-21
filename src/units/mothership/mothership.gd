@@ -1,5 +1,7 @@
 extends UnitBase
 
+signal hitted()
+
 func _ready() -> void:
 	set_unit_group("")
 
@@ -7,8 +9,12 @@ func _ready() -> void:
 func randomize_group() -> void:
 	.randomize_group()
 
+func fire_missiles() -> void:
+	$Cannons.shoot()
+
 func hit() -> void:
 	_spawn_explosions(2, 4)
+	emit_signal("hitted")
 
 func destroy(p_silent: bool = false) -> void:
 	_spawn_destroy_explosions()
