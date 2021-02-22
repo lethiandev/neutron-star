@@ -22,9 +22,8 @@ func destroy(p_silent: bool = false) -> void:
 
 func _spawn_destroy_explosions() -> void:
 	while true:
-		_spawn_explosions(5, 10, 1.0)
-		var wait = 0.5 + randf() * 0.2
-		yield(get_tree().create_timer(wait), "timeout")
+		_spawn_explosions(5, 10, 0.9)
+		yield(get_tree().create_timer(0.65), "timeout")
 
 func _spawn_explosions(p_min: int, p_max: int, p_color_delay: float = 0.4) -> void:
 	_remove_explosions()
