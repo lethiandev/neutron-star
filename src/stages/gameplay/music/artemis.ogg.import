@@ -11,5 +11,5 @@ dest_files=[ "res://.import/artemis.ogg-c123e54990064d6bd90c6b3eb2daf9ab.oggstr"
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
