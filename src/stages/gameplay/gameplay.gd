@@ -25,6 +25,12 @@ func _ready() -> void:
 	_populate_interface_state()
 
 func _process(p_delta: float) -> void:
+	# Handle game restart after boss defeat
+	if $Interface/Thanks.visible:
+		if $Interface/Courtain/AnimationPlayer.is_playing():
+			return
+		if Input.is_action_just_pressed("start"):
+			_goto_game_over()
 	if not completed:
 		_progress_game(p_delta)
 	_populate_interface_state()
@@ -96,13 +102,17 @@ func _set_damage_cooldown(p_from: UnitBase, p_time: float) -> void:
 
 func _game_failure() -> void:
 	get_tree().set_pause(true)
-	$Interface/Courtain/AnimationPlayer.play("fade_out")
-	yield($Interface/Courtain/AnimationPlayer, "animation_finished")
-	get_tree().change_scene("res://stages/game_over/game_over.tscn")
-	get_tree().set_meta("final_score", score)
+	_goto_game_over()
 
 func _on_stage_clear():
 	$BackgroundPlayer.volume_db = -100
 	$Interface/CenterContainer.visible = false
-	get_tree().set_meta("final_score", score)
 	completed = true
+	yield(get_tree().create_timer(5.0), "timeout")
+	$Interface/Thanks.visible = true
+
+func _goto_game_over() -> void:
+	get_tree().set_meta("final_score", score)
+	$Interface/Courtain/AnimationPlayer.play("fade_out")
+	yield($Interface/Courtain/AnimationPlayer, "animation_finished")
+	get_tree().change_scene("res://stages/game_over/game_over.tscn")
