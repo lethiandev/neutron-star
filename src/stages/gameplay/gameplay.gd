@@ -16,6 +16,8 @@ var multiplier: int = 1
 var last_group: String = ""
 var hitted: float = 0.0
 
+var completed: bool = false
+
 func _init() -> void:
 	randomize()
 
@@ -23,6 +25,8 @@ func _ready() -> void:
 	_populate_interface_state()
 
 func _process(p_delta: float) -> void:
+	if completed:
+		return
 	if cooldown < 0.1:
 		_process_game_input()
 	_process_game_state(p_delta)
@@ -95,3 +99,9 @@ func _game_failure() -> void:
 	yield($Interface/Courtain/AnimationPlayer, "animation_finished")
 	get_tree().change_scene("res://stages/game_over/game_over.tscn")
 	get_tree().set_meta("final_score", score)
+
+func _on_stage_clear():
+	$BackgroundPlayer.volume_db = -100
+	$Interface/CenterContainer.visible = false
+	get_tree().set_meta("final_score", score)
+	completed = true

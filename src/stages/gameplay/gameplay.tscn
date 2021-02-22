@@ -141,3 +141,4 @@ position = Vector2( 160, 120 )
 script = ExtResource( 8 )
 
 [connection signal="unit_hitted" from="World/NeutronStar" to="." method="_on_neutron_star_unit_hitted"]
+[connection signal="stage_clear" from="World/UnitsSpawner" to="." method="_on_stage_clear"]
