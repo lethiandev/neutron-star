@@ -72,17 +72,11 @@ func _spawn_wave_4() -> void:
 func _spawn_wave_5() -> void: 
 	var side = 1.0 if randf() > 0.5 else -1.0
 	yield(_spawn_spaceship(0.0, 1.8, Vector2(180.0 * side, -100.0)), "completed")
-	yield(_spawn_spaceship(0.5, 1.8, Vector2(180.0 * -side, -100.0)), "completed")
+	yield(_spawn_spaceship(0.6, 1.8, Vector2(180.0 * -side, -100.0)), "completed")
 	yield(_spawn_spaceship(0.0, 1.8, Vector2(180.0 * side, 100.0)), "completed")
-	yield(_spawn_spaceship(0.5, 1.8, Vector2(180.0 * -side, 100.0)), "completed")
-	yield(_spawn_spaceship(0.0, 1.6, Vector2(180.0 * side, 40.0)), "completed")
-	yield(_spawn_spaceship(0.5, 1.6, Vector2(180.0 * -side, 40.0)), "completed")
-	yield(_spawn_spaceship(0.0, 1.6, Vector2(180.0 * side, -60.0)), "completed")
-	yield(_spawn_spaceship(0.8, 1.6, Vector2(180.0 * -side, -60.0)), "completed")
-	yield(_spawn_spaceship(0.0, 1.6, Vector2(180.0 * side, 0.0)), "completed")
-	yield(_spawn_spaceship(0.8, 1.6, Vector2(180.0 * -side, 0.0)), "completed")
-	yield(_spawn_spaceship(0.0, 1.6, Vector2(180.0 * side, 100.0)), "completed")
-	yield(_spawn_spaceship(0.8, 1.6, Vector2(180.0 * -side, 100.0)), "completed")
+	yield(_spawn_spaceship(0.6, 1.8, Vector2(180.0 * -side, 100.0)), "completed")
+	yield(_spawn_spaceship(0.0, 1.6, Vector2(180.0 * side, 30.0)), "completed")
+	yield(_spawn_spaceship(0.5, 1.6, Vector2(180.0 * -side, 30.0)), "completed")
 	yield(_delay(2.0), "completed")
 
 func _spawn_mothership_boss() -> void:
