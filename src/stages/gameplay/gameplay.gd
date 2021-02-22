@@ -10,6 +10,9 @@ var action_group_map = {
 var cooldown: float = 0.0
 var health: float = 1.0
 
+var score: int = 0
+var multiplier: int = 1
+
 var last_group: String = ""
 var hitted: float = 0.0
 
@@ -39,6 +42,8 @@ func _process_game_state(p_delta: float) -> void:
 func _populate_interface_state() -> void:
 	$Interface/CenterContainer/CooldownBar.progress = cooldown
 	$Interface/CenterContainer/HealthBar.progress = health
+	$Interface/Score.text = ("%d" % score)
+	$Interface/Multiplier.text = ("%dx" % multiplier)
 
 func _process_unit_group(p_group: String) -> void:
 	var nodes = get_tree().get_nodes_in_group(p_group)
@@ -57,9 +62,12 @@ func _handle_unit_hit(p_unit: Node) -> void:
 		$World/NeutronStar.shoot(pos)
 		$Camera2D.shake_low()
 		p_unit.hit()
+		score += 10 * multiplier
+		multiplier += 1
 
 func _handle_unit_miss() -> void:
 	cooldown = 1.0
+	multiplier = 1
 	$MissEffectPlayer.play()
 
 func _on_neutron_star_unit_hitted(p_unit: UnitBase) -> void:
@@ -73,6 +81,7 @@ func _handle_star_hit(p_unit: UnitBase) -> void:
 
 func _take_damage(p_from: UnitBase) -> void:
 	health -= 0.30
+	multiplier = 1
 	if health < -0.1:
 		_game_failure()
 
@@ -85,3 +94,4 @@ func _game_failure() -> void:
 	$Interface/Courtain/AnimationPlayer.play("fade_out")
 	yield($Interface/Courtain/AnimationPlayer, "animation_finished")
 	get_tree().change_scene("res://stages/game_over/game_over.tscn")
+	get_tree().set_meta("final_score", score)
