@@ -1,5 +1,7 @@
 extends Node
 
+signal stage_clear()
+
 const Mothership = preload("res://units/mothership/mothership.gd")
 
 const SpaceshipScene = preload("res://units/spaceship/spaceship.tscn")
@@ -15,7 +17,7 @@ func _ready() -> void:
 	yield(_spawn_wave_4(), "completed")
 	yield(_spawn_wave_5(), "completed")
 	yield(_spawn_mothership_boss(), "completed")
-	yield(_stage_completed(), "completed")
+	_stage_completed()
 
 func _spawn_wave_1() -> void:
 	var side = 1.0 if randf() > 0.5 else -1.0
@@ -87,8 +89,8 @@ func _spawn_mothership_boss() -> void:
 
 func _stage_completed() -> void:
 	_remove_all_units()
-	yield(_delay(2.0), "completed")
-	
+	emit_signal("stage_clear")
+
 func _remove_all_units() -> void:
 	var units = get_tree().get_nodes_in_group("unit")
 	for unit in units:
