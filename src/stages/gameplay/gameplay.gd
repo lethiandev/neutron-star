@@ -25,8 +25,11 @@ func _ready() -> void:
 	_populate_interface_state()
 
 func _process(p_delta: float) -> void:
-	if completed:
-		return
+	if not completed:
+		_progress_game(p_delta)
+	_populate_interface_state()
+
+func _progress_game(p_delta: float) -> void:
 	if cooldown < 0.1:
 		_process_game_input()
 	_process_game_state(p_delta)
@@ -37,8 +40,6 @@ func _process_game_input() -> void:
 			_process_unit_group(action_group_map[action])
 
 func _process_game_state(p_delta: float) -> void:
-	_populate_interface_state()
-	
 	cooldown = max(0.0, cooldown - p_delta * 2.0)
 	health = min(1.0, health + p_delta * 0.05)
 	hitted = max(0.0, hitted - p_delta)
