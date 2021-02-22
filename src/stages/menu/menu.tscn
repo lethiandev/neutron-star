@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://stages/menu/menu.gd" type="Script" id=1]
 [ext_resource path="res://stages/menu/press_space.png" type="Texture" id=2]
 [ext_resource path="res://stages/menu/controls_hint.png" type="Texture" id=3]
+[ext_resource path="res://stages/menu/credits.png" type="Texture" id=4]
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 resource_name = "blink"
 loop = true
 tracks/0/type = "value"
@@ -20,8 +21,7 @@ tracks/0/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "fade_out"
+[sub_resource type="Animation" id=2]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:color")
@@ -63,7 +63,7 @@ texture = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CenterContainer"]
 autoplay = "blink"
-anims/blink = SubResource( 2 )
+anims/blink = SubResource( 1 )
 
 [node name="ControlsHint" type="TextureRect" parent="."]
 margin_left = 10.0
@@ -71,6 +71,18 @@ margin_top = 10.0
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 3 )
+stretch_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Credits" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -58.0
+margin_right = 40.0
+texture = ExtResource( 4 )
 stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
@@ -85,4 +97,4 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Courtain"]
-anims/fade_out = SubResource( 1 )
+anims/fade_out = SubResource( 2 )
