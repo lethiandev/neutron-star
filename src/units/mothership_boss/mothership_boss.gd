@@ -5,7 +5,8 @@ const MissileUnitScene = preload("res://units/missile/missile.tscn")
 
 signal completed()
 
-var health: float = 500.0
+var max_health: float = 300.0
+var health: float = max_health
 var visual_health: float = 0.0
 
 var completed: bool = false
@@ -18,7 +19,7 @@ func _process(p_delta: float) -> void:
 	_process_boss_state()
 
 func _process_interface_state(p_delta: float) -> void:
-	var new_size = max(0.0, (visual_health / 500.0) * 280.0)
+	var new_size = max(0.0, (visual_health / max_health) * 280.0)
 	$Interface/BottomAnchor/HealthBar.rect_size.x = new_size
 	visual_health = min(health, visual_health + p_delta * 200.0)
 
